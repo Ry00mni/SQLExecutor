@@ -9,7 +9,7 @@ public class UpdateDB {
 	public static void main(String args[]) {
 		
 		/* DB接続情報 */
-	    final String URL = "jdbc:mysql://localhost/Shop";
+	    final String URL = "jdbc:mysql://localhost/shop";
 		final String USER = "root";
 		final String PASS = "";
 		
@@ -18,12 +18,13 @@ public class UpdateDB {
 		
 		/* 
 		 * ターミナルにて入力受付
-		 * 入力された絶対パスの.sqlファイルを読み込み
+		 * 入力された絶対パスの.sql内のSQL文を読み込む
 		 */
 		String sql = "";
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("実行するSQLファイルの絶対パスを入力してください");
+		System.out.println("実行する.sqlファイルの絶対パスを入力してください。");
 		System.out.println(">");
+		// 入力内容からファイルの絶対パスを取得
 		String filePath = scanner.nextLine();
 		scanner.close();
 		
@@ -33,25 +34,10 @@ public class UpdateDB {
 			System.out.println(sql);  // デバッグ用
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} 
 		
-		/* SQL分の解析、実行*/
+		/* SQLの解析、実行*/
 		dao.validationSQL(sql);
-//			
-//		String filePath = "/Users/ryosuke/Pictures/test.sql";
-//        StringBuilder sql = new StringBuilder();
-//
-//        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-//            String line;
-//            while ((line = br.readLine()) != null) {
-//                sql.append(line).append("\n");
-//            }
-//            System.out.println(sql.toString());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }	
-		
-//			dao.validationSQL(sql.toString());
 	}
 }
